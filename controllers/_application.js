@@ -252,6 +252,13 @@ module.exports = (app, passport, React, ReactDOMServer) => {
     failureFlash: true,
   }));
 
+  app.post('/appLogin', (req, res, next) => {
+    passport.authenticate('gravity-login', (err, userInfo) => {
+      if (err) return next(err)
+      res.json(userInfo)
+    })(req, res, next)
+  })
+
   // ===============================================================================
   // GET PASSPHRASE
   // ===============================================================================
